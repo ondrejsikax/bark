@@ -19,3 +19,7 @@
 *.local.txt
 *.local.md
 Makefile.local.mk
+
+# Project
+/bark
+*.exe
