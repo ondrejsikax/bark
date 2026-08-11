@@ -8,8 +8,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/ebitengine/oto/v3"
 	"github.com/hajimehoshi/go-mp3"
-	"github.com/hajimehoshi/oto/v2"
 )
 
 //go:embed bark.mp3
@@ -21,7 +21,11 @@ func Bark() {
 		log.Fatal(err)
 	}
 
-	ctx, ready, err := oto.NewContext(decoder.SampleRate(), 2, 2)
+	ctx, ready, err := oto.NewContext(&oto.NewContextOptions{
+		SampleRate:   decoder.SampleRate(),
+		ChannelCount: 2,
+		Format:       oto.FormatSignedInt16LE,
+	})
 	if err != nil {
 		log.Fatal(err)
 	}
